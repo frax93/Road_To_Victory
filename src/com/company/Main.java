@@ -25,9 +25,11 @@ public class Main {
         BufferedReader b=new BufferedReader(fw);
         HashMap x= new HashMap();
         while(b.readLine()!=null){
-            x.put(b.readLine(),b.readLine());
+            x.put(b.readLine(),b.readLine() );
             System.out.println(x);
         }
+
+
     }
     }
 
