@@ -1,11 +1,12 @@
 package com.company;
+import java.util.ArrayList;
 
 public class FMappa {
 
-	private int NumCitta;
+	private ArrayList<Percorso> p=new ArrayList<Percorso>();
         
-        public FMappa(int NumCitta){
-            this.NumCitta=NumCitta;
+        public FMappa(){
+			//Istanzia i percorsi e li mette nell'arrayList
             Mazzo m;
             //m= new Mazzo(NumCitta);
         }
@@ -14,6 +15,9 @@ public class FMappa {
 	 * @param Giocatori
 	 * @param Nome_Mappa
 	 */
+	public void AddPercorso(Percorso p1){
+		this.p.add(p1);
+	}
 	public void Mappa(int Giocatori, int Nome_Mappa) {
 		// TODO - implement SingletonMappa.CreaMappa
 		throw new UnsupportedOperationException();

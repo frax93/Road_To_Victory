@@ -14,7 +14,7 @@ public class Percorso {
             this.id=id;
             this.CittaArrivo=Ca;
             this.Cittapartenza=Cp;
-            this.setCaselle();
+            //this.setCaselle();
         }
         private void setCaselle(){
                Random r= new Random();
@@ -56,6 +56,14 @@ public class Percorso {
 	public void CheckFinePartita() {
 		// TODO - implement Percorso.CheckFinePartita
 		throw new UnsupportedOperationException();
+	}
+
+	//ritorna citta partenza o arrivo
+	public Citta getCittapartenza(){
+		return this.Cittapartenza;
+	}
+	public Citta getCittaArrivo(){
+		return this.CittaArrivo;
 	}
 
 }
