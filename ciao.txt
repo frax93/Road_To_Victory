@@ -1,54 +1,54 @@
 
-Roma 
 1887
+Roma 
 
-Parigi 
 781
+Parigi 
 
-Londra 
 464
+Londra 
 
-Dublino 
 0
+Dublino 
 
-Oslo 
 1266
+Oslo 
 
-Stoccolma 
 1629
+Stoccolma 
 
-Minsk 
 2212
+Minsk 
 
-Kiev 
 2517
+Kiev 
 
-Atene 
 2856
+Atene 
 
-Zagabria 
 1799
+Zagabria 
 
-Bratislava 
 1734
+Bratislava 
 
-Berlino 
 1318
+Berlino 
 
-Amsterdam 
 756
+Amsterdam 
 
-Bruxelles 
 776
+Bruxelles 
 
-Milano 
 1416
+Milano 
 
-Madrid 
 1451
+Madrid 
 
-Lisbona 
 1643
+Lisbona 
 
-Riga 
 1955
+Riga 
