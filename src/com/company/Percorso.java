@@ -14,11 +14,15 @@ public class Percorso {
             this.id=id;
             this.CittaArrivo=Ca;
             this.Cittapartenza=Cp;
-            //this.setCaselle();
+            this.setCaselle();
         }
         private void setCaselle(){
-               Random r= new Random();
-               int num= r.nextInt(8-14);
+               int dist= (int) Math.sqrt(Math.abs(this.Cittapartenza.getDistanza()-this.CittaArrivo.getDistanza()));
+               //Creare caselle in base a dist
+				for(int i=0;i<dist/50;i++){
+					Casella c=new Casella(i);
+					this.caselle.add(c);
+				}
                
             
         }
@@ -59,11 +63,17 @@ public class Percorso {
 	}
 
 	//ritorna citta partenza o arrivo
+	public int getid(){
+		return this.id;
+	}
 	public Citta getCittapartenza(){
 		return this.Cittapartenza;
 	}
 	public Citta getCittaArrivo(){
 		return this.CittaArrivo;
+	}
+	public ArrayList<Casella> getCaselle(){
+		return this.caselle;
 	}
 
 }

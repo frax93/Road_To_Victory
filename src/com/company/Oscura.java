@@ -1,4 +1,4 @@
-package com.company;
+/*package com.company;
 
 public class Oscura extends Citta {
 
@@ -11,4 +11,4 @@ public class Oscura extends Citta {
 		throw new UnsupportedOperationException();
 	}
 
-}
+}*/

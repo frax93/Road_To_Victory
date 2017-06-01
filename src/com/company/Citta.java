@@ -3,11 +3,14 @@ package com.company;
 public class Citta {
 
 	private String Nome;
+	private int distanza;
         public Citta() {
            this.Nome="";
+           this.distanza=0;
         }
-        public Citta(String Nome){
+        public Citta(String Nome,int dist){
             this.Nome=Nome;
+            this.distanza=dist*dist;
         }
         public String getNome(){
             return this.Nome;
@@ -34,6 +37,10 @@ public class Citta {
 	public void CheckOccupata() {
 		// TODO - implement Citta.CheckOccupata
 		throw new UnsupportedOperationException();
+	}
+
+	public int getDistanza(){
+		return this.distanza;
 	}
 
 }

@@ -15,6 +15,10 @@ public class FMappa {
 	 * @param Giocatori
 	 * @param Nome_Mappa
 	 */
+	//RITORNA ARRAY SIZE
+	public void sizea(){
+		System.out.println(p.size());
+	}
 	public void AddPercorso(Percorso p1){
 		this.p.add(p1);
 	}
