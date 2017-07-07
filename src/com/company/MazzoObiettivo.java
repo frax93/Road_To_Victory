@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MazzoObiettivo extends Mazzo {
-
+    private ArrayList<CartaObiettivo> Carte= new ArrayList<CartaObiettivo>();
     /**
      *
      * @param Cit
      */
-    public MazzoObiettivo(ArrayList<Citta> Cit) {
-            super(Cit.size());
+        public MazzoObiettivo(ArrayList<Citta> Cit) {
             for(int i=0;i<Cit.size();i++){
                 Citta c= Cit.get(i);
                 CartaObiettivo c1;
@@ -20,31 +19,30 @@ public class MazzoObiettivo extends Mazzo {
                 
         }
         @Override 
-        public void addCarta(CartaObiettivo c){
-            super.Carte.add(c);
+        public void addCarta(Carta c){
+            this.Carte.add((CartaObiettivo) c);
         }
         @Override
-	public CartaObiettivo PescaCarta() {
+        public Carta PescaCarta() {
                 int num1=this.MischiaMazzo();
-		CartaObiettivo c=super.Carte.get(num1);
-                super.Carte.remove(num1);
+		        CartaObiettivo c=this.Carte.get(num1);
+                this.Carte.remove(num1);
                 return c;
                
-	}
+	    }
         @Override
-	public int MischiaMazzo() {
+	    public int MischiaMazzo() {
                Random r= new Random();
-               int num= r.nextInt(super.Carte.size());
+               int num= r.nextInt(this.Carte.size());
                return num;
-	}
+	    }
 
-	/**
-	 * 
-	 * @param Mappa
-	 *//*
-	public MazzoObiettivo CreaMazzo(int Mappa) {
-		// TODO - implement MazzoObiettivo.CreaMazzo
-		throw new UnsupportedOperationException();
-	}*/
+	  /* CANCELLARE IN FUTURO
+	   public void stampacarte(){
+            for(int i=0;i<this.Carte.size();i++){
+                String c=this.Carte.get(i).getNome();
+                System.out.println(c);
+            }
+        }*/
 
 }

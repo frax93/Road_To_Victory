@@ -27,9 +27,8 @@ public class FMappa {
 		throw new UnsupportedOperationException();
 	}
 
-	public void DammiPercorsi() {
-		// TODO - implement SingletonMappa.DammiPercorsi
-		throw new UnsupportedOperationException();
+	public ArrayList<Percorso> DammiPercorsi() {
+		return this.p;
 	}
 
 	/**

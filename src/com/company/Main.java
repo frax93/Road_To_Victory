@@ -6,8 +6,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         ArrayList<Citta> c1=new ArrayList<Citta>();
-
-        MazzoObiettivo m=new MazzoObiettivo(c1);
         FileReader fw = new FileReader("ciao.txt");
         BufferedReader b=new BufferedReader(fw);
         HashMap x= new HashMap();
@@ -26,11 +24,13 @@ public class Main {
             for(int j=i+1;j<=i+4&&j<c1.size() ;j++){
                 Percorso p;
                 p=new Percorso(i*i+j*j,c1.get(i),c1.get(j));
-                System.out.println(p.getCaselle());
                 m1.AddPercorso(p);
         }
+        MazzoObiettivo m=new MazzoObiettivo(c1);
+        MazzoPercorso mp=new MazzoPercorso(m1.DammiPercorsi());
         //ABBIAMO CREATO 62 PERCORSI CON 18 CITTA' CON TUTTI ID DIVERSI (TABELLA HASH)
         //NEI PERCORSI ABBIAMO MESSO LE CASELLE IN BASE ALLA DISTANZA
+        //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO 
 
         }
 

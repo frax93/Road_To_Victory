@@ -4,39 +4,35 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MazzoPercorso extends Mazzo {
-        
-        public MazzoPercorso(ArrayList<Citta> Cit) {
-            super(Cit.size());
-            for(int i=0;i<Cit.size();i++){
-                Citta c= Cit.get(i);
-                CartaObiettivo c1;
-                //Creare percorso meglio
-                c1=new CartaObiettivo(i, c.getNome());
-                this.addCarta(c1);
+        private ArrayList<CartaPercorso> Carte= new ArrayList<CartaPercorso>();
+        public MazzoPercorso(ArrayList<Percorso> p) {
+            for(int i=0;i<p.size();i++){
+                Percorso percorso= p.get(i);
+                Citta ca= percorso.getCittaArrivo();
+                Citta cp= percorso.getCittapartenza();
+                CartaPercorso c1=new CartaPercorso(1,cp.getNome(),ca.getNome());
+                this.addCarta((Carta)c1);
             }
                 
         }
-        /*public MazzoPercorso(int NumCarte) {
-            super(NumCarte);
-        }
-*/
+
         @Override 
-        public void addCarta(CartaObiettivo c){
-            super.Carte.add(c);
+        public void addCarta(Carta c){
+            this.Carte.add((CartaPercorso) c);
         }
         
         @Override
-	    public CartaObiettivo PescaCarta() {
+	    public Carta PescaCarta() {
                 int num1=this.MischiaMazzo();
-		        CartaObiettivo c=super.Carte.get(num1);
-                super.Carte.remove(num1);
+		        Carta c=this.Carte.get(num1);
+                this.Carte.remove(num1);
                 return c;
         }
         
         @Override
 	    public int MischiaMazzo() {
                Random r= new Random();
-               int num= r.nextInt(super.Carte.size());
+               int num= r.nextInt(this.Carte.size());
                return num;
         }
 

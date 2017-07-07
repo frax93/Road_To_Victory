@@ -10,6 +10,8 @@ public class CartaPercorso extends Carta {
         this.CittaPartenza=CittaPartenza;
         this.CittaArrivo=CittaArrivo;
     }
+    public String getCittaPartenza(){return this.CittaPartenza;}
+    public String getCittaArrivo(){return this.CittaArrivo;}
 
 
     public void CreaCarta() {
