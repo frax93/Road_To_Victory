@@ -35,9 +35,12 @@ public class FMappa {
 	 * 
 	 * @param Giocatori
 	 */
-	public void PopolaMappa(int Giocatori) {
-		// TODO - implement SingletonMappa.PopolaMappa
-		throw new UnsupportedOperationException();
+	public void PopolaMappa(ArrayList<Giocatore> giocatores) {
+		//DA FINIRE
+		for(i=0; i<giocatores.size();i++){
+			FMezzo factory= new FMezzo();
+			factory.CreaVagone(giocatores.get(i));
+		}
 	}
 
 	/**

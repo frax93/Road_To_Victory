@@ -3,7 +3,7 @@ package com.company;
 public class Nave extends FMezzo {
 
         public Nave(int id) {
-            super(id);
+            //super(id);
         }
         /*
 	public void CreaMezzo() {

@@ -1,9 +1,10 @@
 package com.company;
 
-public class Vagone extends FMezzo {
-
-        public Vagone(int id) {
-            super(id);
+public class Vagone {
+		private int id;
+		private Giocatore g;
+        public Vagone(Giocatore g) {
+			this.g=g;
         }
 
 	public void CreaMezzo() {

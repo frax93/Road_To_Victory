@@ -1,7 +1,13 @@
 package com.company;
 
 public class Giocatore {
+	private int id;
+	private String username;
 
+	public Giocatore(int id, String u){
+		this.id=id;
+		this.username=u;
+	}
 	public void LanciaDado() {
 		// TODO - implement Giocatore.LanciaDado
 		throw new UnsupportedOperationException();

@@ -30,7 +30,13 @@ public class Main {
         MazzoPercorso mp=new MazzoPercorso(m1.DammiPercorsi());
         //ABBIAMO CREATO 62 PERCORSI CON 18 CITTA' CON TUTTI ID DIVERSI (TABELLA HASH)
         //NEI PERCORSI ABBIAMO MESSO LE CASELLE IN BASE ALLA DISTANZA
-        //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO 
+        //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO
+        Giocatore g1=new Giocatore(12131,"Scandalo");
+        Giocatore g2=new Giocatore(12231,"Ghista");
+        FMezzo factory= new FMezzo();
+        factory.CreaVagone(g1);
+        factory.CreaVagone(g2);
+
 
         }
 

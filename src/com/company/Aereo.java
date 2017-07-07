@@ -3,7 +3,7 @@ package com.company;
 public class Aereo extends FMezzo {
 
         public Aereo(int id) {
-            super(id);
+
         }
 
 	public void CreaMezzo() {
