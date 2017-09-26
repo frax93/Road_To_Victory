@@ -37,7 +37,7 @@ public class FMappa {
 	 */
 	public void PopolaMappa(ArrayList<Giocatore> giocatores) {
 		//DA FINIRE
-		for(i=0; i<giocatores.size();i++){
+		for(int i=0; i<giocatores.size();i++){
 			FMezzo factory= new FMezzo();
 			factory.CreaVagone(giocatores.get(i));
 		}
