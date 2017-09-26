@@ -31,11 +31,18 @@ public class Main {
         //ABBIAMO CREATO 62 PERCORSI CON 18 CITTA' CON TUTTI ID DIVERSI (TABELLA HASH)
         //NEI PERCORSI ABBIAMO MESSO LE CASELLE IN BASE ALLA DISTANZA
         //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO
-        Giocatore g1=new Giocatore(12131,"Scandalo");
-        Giocatore g2=new Giocatore(12231,"Ghista");
+        Carta carta=mp.PescaCarta();
+        Carta carta1=mp.PescaCarta();
+        Giocatore g1=new Giocatore(12131,"Scandalo",carta);
+        Giocatore g2=new Giocatore(12231,"Ghista",carta1);
         FMezzo factory= new FMezzo();
         factory.CreaVagone(g1);
         factory.CreaVagone(g2);
+        ArrayList<Giocatore> giocatore = new ArrayList<Giocatore>();
+        giocatore.add(g1);
+        giocatore.add(g2);
+        m1.PopolaMappa(giocatore);
+        System.out.println(m1);
 
 
         }

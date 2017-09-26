@@ -4,7 +4,7 @@ public class Citta {
 
 	private String Nome;
 	private int distanza;
-	private FMezzo mezzo=null;
+	private Vagone mezzo=null;
         public Citta() {
            this.Nome="";
            this.distanza=0;
@@ -30,8 +30,11 @@ public class Citta {
 	 * 
 	 * @param Mezzo
 	 */
-	public void PosizionaGiocatore(FMezzo Mezzo) {
-		this.mezzo=Mezzo;
+	public void PosizionaGiocatore(FMezzo Mezzo, Giocatore g) {
+		this.mezzo=Mezzo.CreaVagone(g);
+	}
+	public Vagone getMezzo(){
+		return this.mezzo;
 	}
 
 	public void CheckOccupata() {

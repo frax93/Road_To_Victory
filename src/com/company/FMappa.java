@@ -44,7 +44,7 @@ public class FMappa {
 			CartaPercorso c1=g.ChiediCartaPercorso();
 			for(int j=0;j<this.p.size();j++){
 				Percorso p1=p.get(j);
-				p1.TrovaPercorso(c1,v);
+				p1.TrovaPercorso(c1,factory,g);
 			}
 		}
 	}

@@ -5,10 +5,10 @@ public class Giocatore {
 	private String username;
 	private CartaPercorso c;
 
-	public Giocatore(int id, String u, CartaPercorso c){
+	public Giocatore(int id, String u, Carta c){
 		this.id=id;
 		this.username=u;
-		this.c=c;
+		this.c=(CartaPercorso) c;
 	}
 	public void LanciaDado() {
 		// TODO - implement Giocatore.LanciaDado

@@ -37,10 +37,10 @@ public class Percorso {
 	 * @param CartaPercorso
 	 * @param Mezzo
 	 */
-	public Percorso TrovaPercorso(CartaPercorso c, FMezzo mez) {
+	public void TrovaPercorso(CartaPercorso c, FMezzo mez,Giocatore g) {
 		//PER IL MOMENTO usiamo stringhe come identificativo citta!
-		if(c.getCittaPartenza()==this.Cittapartenza.getNome())
-			this.Cittapartenza.PosizionaGiocatore(mez);
+		if(c.getCittaPartenza()==this.Cittapartenza.getNome()&&this.Cittapartenza.getMezzo()==null)
+			this.Cittapartenza.PosizionaGiocatore(mez,g);
 	}
 
 	public void CheckSuiVicini() {
