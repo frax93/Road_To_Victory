@@ -37,9 +37,10 @@ public class Percorso {
 	 * @param CartaPercorso
 	 * @param Mezzo
 	 */
-	public void TrovaPercorso(int CartaPercorso, int Mezzo) {
-		// TODO - implement Percorso.TrovaPercorso
-		throw new UnsupportedOperationException();
+	public Percorso TrovaPercorso(CartaPercorso c, FMezzo mez) {
+		//PER IL MOMENTO usiamo stringhe come identificativo citta!
+		if(c.getCittaPartenza()==this.Cittapartenza.getNome())
+			this.Cittapartenza.PosizionaGiocatore(mez);
 	}
 
 	public void CheckSuiVicini() {

@@ -10,8 +10,8 @@ public class Casella {
             this.libera=true;
         }
 	public void PosizionaGiocatore(FMezzo Mezzo){
-            this.libera=false;
             this.m=Mezzo;
+            this.libera=false;
         }
 
 	public boolean CheckOccupata(){

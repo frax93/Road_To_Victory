@@ -3,10 +3,12 @@ package com.company;
 public class Giocatore {
 	private int id;
 	private String username;
+	private CartaPercorso c;
 
-	public Giocatore(int id, String u){
+	public Giocatore(int id, String u, CartaPercorso c){
 		this.id=id;
 		this.username=u;
+		this.c=c;
 	}
 	public void LanciaDado() {
 		// TODO - implement Giocatore.LanciaDado
@@ -23,9 +25,8 @@ public class Giocatore {
 		throw new UnsupportedOperationException();
 	}
 
-	public void ChiediCartaPercorso() {
-		// TODO - implement Giocatore.ChiediCartaPercorso
-		throw new UnsupportedOperationException();
+	public CartaPercorso ChiediCartaPercorso() {
+		return this.c;
 	}
 
 	public void ChiediCartaObiettivo() {

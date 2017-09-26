@@ -4,6 +4,7 @@ public class Citta {
 
 	private String Nome;
 	private int distanza;
+	private FMezzo mezzo=null;
         public Citta() {
            this.Nome="";
            this.distanza=0;
@@ -29,9 +30,8 @@ public class Citta {
 	 * 
 	 * @param Mezzo
 	 */
-	public void PosizionaGiocatore(int Mezzo) {
-		// TODO - implement Citta.PosizionaGiocatore
-		throw new UnsupportedOperationException();
+	public void PosizionaGiocatore(FMezzo Mezzo) {
+		this.mezzo=Mezzo;
 	}
 
 	public void CheckOccupata() {

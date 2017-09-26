@@ -36,10 +36,16 @@ public class FMappa {
 	 * @param Giocatori
 	 */
 	public void PopolaMappa(ArrayList<Giocatore> giocatores) {
-		//DA FINIRE
+		//DA TESTARE
 		for(int i=0; i<giocatores.size();i++){
+			Giocatore g=giocatores.get(i);
 			FMezzo factory= new FMezzo();
-			factory.CreaVagone(giocatores.get(i));
+			Vagone v=factory.CreaVagone(g);
+			CartaPercorso c1=g.ChiediCartaPercorso();
+			for(int j=0;j<this.p.size();j++){
+				Percorso p1=p.get(j);
+				p1.TrovaPercorso(c1,v);
+			}
 		}
 	}
 
