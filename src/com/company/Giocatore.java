@@ -1,15 +1,28 @@
 package com.company;
 
-public class Giocatore {
+public class Giocatore implements Comparable<Giocatore> {
 	private int id;
 	private String username;
 	private CartaPercorso c;
-
+	@Override
+	public int compareTo(Giocatore g){
+		int compare=((Giocatore) g).getId();
+		return this.id-compare;
+	}
 	public Giocatore(int id, String u, Carta c){
 		this.id=id;
 		this.username=u;
 		this.c=(CartaPercorso) c;
 	}
+
+	public int getId(){
+		return this.id;
+	}
+
+	public String getUsername(){
+		return this.username;
+	}
+
 	public void LanciaDado() {
 		// TODO - implement Giocatore.LanciaDado
 		throw new UnsupportedOperationException();

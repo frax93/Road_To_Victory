@@ -1,4 +1,7 @@
 package com.company;
+import java.util.*;
+import java.time;
+
 
 public class iTurno {
 
@@ -14,9 +17,15 @@ public class iTurno {
 		throw new UnsupportedOperationException();
 	}
 
-	public void OrdinaGiocatori() {
-		// TODO - implement iTurno.OrdinaGiocatori
-		throw new UnsupportedOperationException();
+	/*public void OrdinaGiocatori(ArrayList<Giocatore> g) {
+		Collections.sort(g);
+		System.out.println(g);
+	}*/
+	public ArrayList<Giocatore> OrdinaGiocatori(ArrayList<Giocatore> g) {
+			Collections.sort(g);
+			return g;
+
 	}
+
 
 }

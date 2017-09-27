@@ -33,8 +33,8 @@ public class Main {
         //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO
         Carta carta=mp.PescaCarta();
         Carta carta1=mp.PescaCarta();
-        Giocatore g1=new Giocatore(12131,"Scandalo",carta);
-        Giocatore g2=new Giocatore(12231,"Ghista",carta1);
+        Giocatore g1=new Giocatore(2,"Scandalo",carta);
+        Giocatore g2=new Giocatore(1,"Ghista",carta1);
         FMezzo factory= new FMezzo();
         factory.CreaVagone(g1);
         factory.CreaVagone(g2);
@@ -42,7 +42,8 @@ public class Main {
         giocatore.add(g1);
         giocatore.add(g2);
         m1.PopolaMappa(giocatore);
-        System.out.println(m1);
+        iTurno t=new iTurno();
+        t.OrdinaGiocatori(giocatore);
 
 
         }
