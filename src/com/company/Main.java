@@ -4,47 +4,27 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-
-        ArrayList<Citta> c1=new ArrayList<Citta>();
-        FileReader fw = new FileReader("ciao.txt");
-        BufferedReader b=new BufferedReader(fw);
-        HashMap x= new HashMap();
-        while(b.readLine()!=null){
-            x.put(Integer.parseInt(b.readLine()),b.readLine() );
-
-        }
-        Map<Integer, String> tree = new TreeMap<Integer, String>(x);
-        //Costruzione dei percorsi della mappa DA SPOSTARE IN FUTURO
-        for (Map.Entry entry : tree.entrySet()){
-            Citta p= new Citta((String)entry.getValue(),(int)entry.getKey());
-            c1.add(p);
-        }
-        FMappa m1=new FMappa();
-        for (int i=0;i<c1.size();i++)
-            for(int j=i+1;j<=i+4&&j<c1.size() ;j++){
-                Percorso p;
-                p=new Percorso(i*i+j*j,c1.get(i),c1.get(j));
-                m1.AddPercorso(p);
-        }
-        MazzoObiettivo m=new MazzoObiettivo(c1);
-        MazzoPercorso mp=new MazzoPercorso(m1.DammiPercorsi());
-        //ABBIAMO CREATO 62 PERCORSI CON 18 CITTA' CON TUTTI ID DIVERSI (TABELLA HASH)
-        //NEI PERCORSI ABBIAMO MESSO LE CASELLE IN BASE ALLA DISTANZA
-        //ABBIAMO CREATO I DUE MAZZI SIA OBIETTIVO CHE PERCORSO
-        Carta carta=mp.PescaCarta();
-        Carta carta1=mp.PescaCarta();
-        Giocatore g1=new Giocatore(2,"Scandalo",carta);
-        Giocatore g2=new Giocatore(1,"Ghista",carta1);
+       //MAZZI Sono stati già messi Singleton e pure il Dado E FUNZIONANO PORCA PUTTANA
+        Giocatore g1=new Giocatore(12,"Scandalo1");
+        Giocatore g2=new Giocatore(13,"Ghista1");
+        Giocatore g3=new Giocatore(2,"Scandalo");
+        Giocatore g4=new Giocatore(1,"Ghista");
         FMezzo factory= new FMezzo();
         factory.CreaVagone(g1);
         factory.CreaVagone(g2);
         ArrayList<Giocatore> giocatore = new ArrayList<Giocatore>();
         giocatore.add(g1);
         giocatore.add(g2);
-        m1.PopolaMappa(giocatore);
-        iTurno t=new iTurno();
-        t.OrdinaGiocatori(giocatore);
-
+        FMezzo factory1= new FMezzo();
+        factory1.CreaVagone(g3);
+        factory1.CreaVagone(g4);
+        giocatore.add(g3);
+        giocatore.add(g4);
+        /*iTurno t=new iTurno();
+        t.OrdinaGiocatori(giocatore1);
+        t.InizioTurno(g1);*/
+        Iniziale i=new Iniziale();
+        i.InizioTurno(giocatore,"Europa");
 
         }
 

@@ -1,15 +1,24 @@
 package com.company;
 
-public class Generale extends iTurno {
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
-	public void InizioTurno() {
+public class Generale implements iTurno {
+	@Override
+	public void InizioTurno(ArrayList<Giocatore> g, String nomeMappa) throws FileNotFoundException,IOException {
 		// TODO - implement Generale.InizioTurno
 		throw new UnsupportedOperationException();
 	}
-
+	@Override
 	public void Termina_Turno() {
 		// TODO - implement Generale.Termina_Turno
 		throw new UnsupportedOperationException();
+	}
+	@Override
+	public  ArrayList<Giocatore> OrdinaGiocatori(ArrayList<Giocatore> g){
+		// TO Implement
+		return g;
 	}
 
 }

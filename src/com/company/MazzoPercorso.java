@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MazzoPercorso extends Mazzo {
+        private static MazzoPercorso istance = null;
         private ArrayList<CartaPercorso> Carte= new ArrayList<CartaPercorso>();
-        public MazzoPercorso(ArrayList<Percorso> p) {
+    public static MazzoPercorso getIstance(ArrayList<Percorso> p){
+        if(istance==null){
+            istance = new MazzoPercorso();
             for(int i=0;i<p.size();i++){
                 Percorso percorso= p.get(i);
                 Citta ca= percorso.getCittaArrivo();
                 Citta cp= percorso.getCittapartenza();
                 CartaPercorso c1=new CartaPercorso(1,cp.getNome(),ca.getNome());
-                this.addCarta((Carta)c1);
+                istance.addCarta((Carta)c1);
             }
-                
         }
+        return istance;
+    }
+    public static MazzoPercorso getIstance1(){
+        if(istance==null){
+        }
+        return istance;
+    }
+    protected MazzoPercorso(){
 
+    }
         @Override 
         public void addCarta(Carta c){
             this.Carte.add((CartaPercorso) c);

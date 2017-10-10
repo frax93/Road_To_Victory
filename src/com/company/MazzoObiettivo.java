@@ -1,24 +1,33 @@
 package com.company;
-import Design.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MazzoObiettivo extends Mazzo {
+    private static MazzoObiettivo istance = null;
     private ArrayList<CartaObiettivo> Carte= new ArrayList<CartaObiettivo>();
     /**
      *
      * @param Cit
      */
-        public MazzoObiettivo(ArrayList<Citta> Cit) {
+    public static MazzoObiettivo getIstance(ArrayList<Citta> Cit){
+        if(istance==null){
+            istance = new MazzoObiettivo();
             for(int i=0;i<Cit.size();i++){
                 Citta c= Cit.get(i);
                 CartaObiettivo c1;
                 c1=new CartaObiettivo(i, c.getNome());
-                this.addCarta(c1);
+                istance.addCarta(c1);
             }
-                
         }
-        @Override 
+        return istance;
+    }
+    public static MazzoObiettivo getIstance1(){
+        return istance;
+    }
+    protected MazzoObiettivo(){
+
+    }
+        @Override
         public void addCarta(Carta c){
             this.Carte.add((CartaObiettivo) c);
         }
@@ -36,6 +45,7 @@ public class MazzoObiettivo extends Mazzo {
                int num= r.nextInt(this.Carte.size());
                return num;
 	    }
+	    public int getCarte(){return this.Carte.size();}
 
 	  /* CANCELLARE IN FUTURO
 	   public void stampacarte(){

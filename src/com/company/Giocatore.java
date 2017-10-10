@@ -1,18 +1,22 @@
 package com.company;
 
-public class Giocatore implements Comparable<Giocatore> {
+public class Giocatore implements Comparable<Giocatore>,Runnable {
 	private int id;
 	private String username;
-	private CartaPercorso c;
+	private CartaPercorso c=null;
+	private CartaObiettivo c1=null;
 	@Override
 	public int compareTo(Giocatore g){
 		int compare=((Giocatore) g).getId();
 		return this.id-compare;
 	}
-	public Giocatore(int id, String u, Carta c){
+	@Override
+	public void run(){
+		this.Posizionamezzo();
+	}
+	public Giocatore(int id, String u){
 		this.id=id;
 		this.username=u;
-		this.c=(CartaPercorso) c;
 	}
 
 	public int getId(){
@@ -23,28 +27,33 @@ public class Giocatore implements Comparable<Giocatore> {
 		return this.username;
 	}
 
-	public void LanciaDado() {
-		// TODO - implement Giocatore.LanciaDado
-		throw new UnsupportedOperationException();
+	public int LanciaDado() {
+		SDado dado=new SDado();
+		dado=dado.getIstance();
+		return dado.Lancia();
+
 	}
 
 	public void Posizionamezzo() {
-		// TODO - implement Giocatore.Posizionamezzo
-		throw new UnsupportedOperationException();
+
 	}
 
 	public void PescaDueCarte() {
-		// TODO - implement Giocatore.PescaDueCarte
-		throw new UnsupportedOperationException();
+		MazzoObiettivo m= new MazzoObiettivo();
+		m=m.getIstance1();
+		this.c1=(CartaObiettivo)m.PescaCarta();
+		MazzoPercorso m1= new MazzoPercorso();
+		m1=m1.getIstance1();
+		this.c=(CartaPercorso)m1.PescaCarta();
+
 	}
 
 	public CartaPercorso ChiediCartaPercorso() {
 		return this.c;
 	}
 
-	public void ChiediCartaObiettivo() {
-		// TODO - implement Giocatore.ChiediCartaObiettivo
-		throw new UnsupportedOperationException();
+	public CartaObiettivo ChiediCartaObiettivo() {
+		return this.c1;
 	}
 
 	public void ChiediMezzo() {

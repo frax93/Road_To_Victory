@@ -3,14 +3,21 @@ package com.company;
 import java.util.Random;
 
 public class SDado {
-
+    private static SDado istance = null;
 	private Random Numero;
-        private int lati;
+    private int lati;
         
-        public SDado(){
-            this.Numero= new Random();
-            this.lati=6;
+    public static SDado getIstance(){
+        if(istance==null){
+            istance = new SDado();
+            istance.Numero= new Random();
+            istance.lati=6;
         }
+        return istance;
+    }
+    protected SDado(){
+
+    }
         
 	public int Lancia() {
             int n=1+this.Numero.nextInt(this.lati);
