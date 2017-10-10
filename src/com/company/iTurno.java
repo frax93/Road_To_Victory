@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 public interface iTurno {
 
 	public abstract void InizioTurno(ArrayList<Giocatore> g,String nomeMappa) throws FileNotFoundException,IOException;
-	public abstract void Termina_Turno();
+	public abstract void Fineturno();
 	public abstract ArrayList<Giocatore> OrdinaGiocatori(ArrayList<Giocatore> g);
 	//Coda dei giocatori
 	/*private final BlockingQueue<Runnable> turno =

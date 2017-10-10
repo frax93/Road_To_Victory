@@ -14,12 +14,12 @@ public class Iniziale implements iTurno {
 		for(int i=0;i<g.size();i++)
 			g.get(i).PescaDueCarte();
 		m.PopolaMappa(g);
+		this.Fineturno();
 
 	}
 	@Override
-	public void Termina_Turno() {
-		// TODO - implement Iniziale.Termina_Turno
-		throw new UnsupportedOperationException();
+	public void Fineturno() {
+		return;
 	}
 	@Override
 	public ArrayList<Giocatore> OrdinaGiocatori(ArrayList<Giocatore> g) {

@@ -1,4 +1,9 @@
 package com.company;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Partita {
 
 	private int ElencoGiocatori;
@@ -9,9 +14,12 @@ public class Partita {
 	 * @param Giocatori
 	 * @param Nome_mappa
 	 */
-	public void AvviaPartita(int Giocatori, int Nome_mappa) {
-		// TODO - implement Partita.AvviaPartita
-		throw new UnsupportedOperationException();
+	public void AvviaPartita(ArrayList<Giocatore> Giocatori, String Nome_mappa) throws FileNotFoundException,IOException {
+		Iniziale i=new Iniziale();
+		i.OrdinaGiocatori(Giocatori);
+		i.InizioTurno(Giocatori,Nome_mappa);
+		Generale g = new Generale();
+		//g.InizioTurno();
 	}
 
 	/**

@@ -20,11 +20,9 @@ public class Main {
         factory1.CreaVagone(g4);
         giocatore.add(g3);
         giocatore.add(g4);
-        /*iTurno t=new iTurno();
-        t.OrdinaGiocatori(giocatore1);
-        t.InizioTurno(g1);*/
-        Iniziale i=new Iniziale();
-        i.InizioTurno(giocatore,"Europa");
+        Partita partita = new Partita();
+        partita.AvviaPartita(giocatore,"Europa");
+
 
         }
 

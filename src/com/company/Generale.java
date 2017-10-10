@@ -11,7 +11,7 @@ public class Generale implements iTurno {
 		throw new UnsupportedOperationException();
 	}
 	@Override
-	public void Termina_Turno() {
+	public void Fineturno() {
 		// TODO - implement Generale.Termina_Turno
 		throw new UnsupportedOperationException();
 	}
