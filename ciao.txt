@@ -1,9 +1,9 @@
 
 1887
-Roma 
+Rome 
 
 781
-Parigi 
+Paris
 
 464
 Londra 
@@ -15,7 +15,7 @@ Dublino
 Oslo 
 
 1629
-Stoccolma 
+stockholm
 
 2212
 Minsk 
@@ -24,13 +24,13 @@ Minsk
 Kiev 
 
 2856
-Atene 
+Athens
 
 1799
-Zagabria 
+zagreb
 
 1734
-Bratislava 
+Moscow
 
 1318
 Berlino 
@@ -42,7 +42,7 @@ Amsterdam
 Bruxelles 
 
 1416
-Milano 
+Milan
 
 1451
 Madrid 
