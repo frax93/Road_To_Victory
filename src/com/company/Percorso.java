@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class Percorso {
 
 	private int id;

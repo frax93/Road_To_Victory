@@ -4,14 +4,19 @@ public class Citta {
 
 	private String Nome;
 	private int distanza;
+	//private float lat;
+	//private float longi;
 	private Vagone mezzo=null;
         public Citta() {
            this.Nome="";
            this.distanza=0;
+           //this.lat=0;
+           //this.longi=0;
         }
         public Citta(String Nome,int dist){
             this.Nome=Nome;
             this.distanza=dist*dist;
+
         }
         public String getNome(){
             return this.Nome;

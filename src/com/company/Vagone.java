@@ -1,5 +1,6 @@
 package com.company;
 
+
 public class Vagone {
 		private int id;
 		private Giocatore g;
