@@ -13,7 +13,7 @@ public class MazzoPercorso extends Mazzo {
                 Percorso percorso= p.get(i);
                 Citta ca= percorso.getCittaArrivo();
                 Citta cp= percorso.getCittapartenza();
-                CartaPercorso c1=new CartaPercorso(1,cp.getNome(),ca.getNome());
+                CartaPercorso c1=new CartaPercorso(1,cp,ca);
                 istance.addCarta((Carta)c1);
             }
         }

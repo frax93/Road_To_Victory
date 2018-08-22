@@ -2,16 +2,16 @@ package com.lynden.example.latlong;
 
 public class CartaPercorso extends Carta {
 
-	private String CittaPartenza;
-	private String CittaArrivo;
+	private Citta CittaPartenza;
+	private Citta CittaArrivo;
 
-    public CartaPercorso(int id1, String CittaPartenza,String CittaArrivo) {
+    public CartaPercorso(int id1, Citta CittaPartenza,Citta CittaArrivo) {
         super(id1);
         this.CittaPartenza=CittaPartenza;
         this.CittaArrivo=CittaArrivo;
     }
-    public String getCittaPartenza(){return this.CittaPartenza;}
-    public String getCittaArrivo(){return this.CittaArrivo;}
+    public Citta getCittaPartenza(){return this.CittaPartenza;}
+    public Citta getCittaArrivo(){return this.CittaArrivo;}
 
 
     public void CreaCarta() {

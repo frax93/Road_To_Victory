@@ -16,7 +16,7 @@ public class MazzoObiettivo extends Mazzo {
             for(int i=0;i<Cit.size();i++){
                 Citta c= Cit.get(i);
                 CartaObiettivo c1;
-                c1=new CartaObiettivo(i, c.getNome());
+                c1=new CartaObiettivo(i, c);
                 istance.addCarta(c1);
             }
         }

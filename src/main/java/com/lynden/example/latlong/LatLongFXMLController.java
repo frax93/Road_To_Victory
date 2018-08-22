@@ -2,8 +2,10 @@ package com.lynden.example.latlong;
 
 import com.lynden.example.latlong.*;
 import com.lynden.example.latlong.Casella;
+import com.lynden.example.latlong.FMezzo;
 import com.lynden.example.latlong.MazzoObiettivo;
 import com.lynden.example.latlong.MazzoPercorso;
+import com.lynden.example.latlong.Mezzo;
 import com.lynden.example.latlong.Percorso;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -252,24 +254,29 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
 
            giocatore.PescaDueCarte();
            CartaObiettivo CartaObbGioc1 = giocatore.ChiediCartaObiettivo();
-           com.lynden.example.latlong.CartaPercorso CartaPercGioc1 = giocatore.ChiediCartaPercorso();
+           CartaPercorso CartaPercGioc1 = giocatore.ChiediCartaPercorso();
 
-           CartaObiettivo.setText("Città obiettivo: " + CartaObbGioc1.getNome());
-           CartaPercorsoPartenza.setText("Partenza:" + CartaPercGioc1.getCittaPartenza());
-           CartaPercorsoArrivo.setText("Arrivo:" + CartaPercGioc1.getCittaArrivo());
+           CartaObiettivo.setText("Città obiettivo: " + CartaObbGioc1.getCittaObiettivo().getNome());
+           CartaPercorsoPartenza.setText("Partenza:" + CartaPercGioc1.getCittaPartenza().getNome());
+           CartaPercorsoArrivo.setText("Arrivo:" + CartaPercGioc1.getCittaArrivo().getNome());
            //CartaObiettivo.setTextFill(Color.web("white"));
 
 
            /*****setto la città di partenza mettendo un Marker *******/
            for (int i = 0; i < mappap.getCitta().size(); i++) {
                LatLong coorPartenza = mappap.getCitta().get(i).getCoordinate();
-               if (mappap.getCitta().get(i).getNome().equals(CartaPercGioc1.getCittaPartenza())) {
+               if (mappap.getCitta().get(i).getNome().equals(CartaPercGioc1.getCittaPartenza().getNome())) {
+                   FMezzo fMezzo=new FMezzo();
+                   Mezzo mezGioc1= fMezzo.CreaVagone(giocatore);
+                   mappap.getCitta().get(i).setMezzo(mezGioc1);
+
                    MarkerOptions MarkerPartenza = new MarkerOptions();
                    MarkerPartenza.position(coorPartenza);
                    MarkerPartenza.visible(Boolean.TRUE);
                    Marker m1 = new Marker(MarkerPartenza);
                    markers.add(m1);
                    map.addMarkers(markers);
+
 
 
                    //Citta cit = percorsi.get(i).getCittaArrivo();
@@ -287,6 +294,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                ArrayList<Casella> caselle = p.getCaselle();
                for (int i = 0; i < caselle.size(); i++) {
                    LatLong[] Prova = {caselle.get(i).getInizio(), caselle.get(i).getFine()};
+                   //p.CheckSuiVicini(caselle.get(i));
                    PolylineOptions pippo = new PolylineOptions();
                    pippo.path(new MVCArray(Prova))
                            .clickable(true)
@@ -305,6 +313,16 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                        /****** per trovare la casella nella mappa******/
                        String coordinata = String.valueOf(path.getAt(0));
                        String[] LatLinea = coordinata.split(",");
+                       CartaPercorso c = giocatore.ChiediCartaPercorso();
+                       ArrayList<Percorso> percorsos=new ArrayList<>();
+                       for(int a=0; a<mappap.DammiPercorsi().size();a++){
+                           Percorso per1 = mappap.DammiPercorsi().get(a);
+                           if(c.getCittaPartenza().getNome().equals(per1.getCittapartenza().getNome()))
+                               percorsos.add(per1);
+                       }
+
+
+
 
 
                        double Lat = Double.valueOf(LatLinea[0].replace("(", ""));
@@ -314,52 +332,54 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                        Casella C = caselle.get(finalI);
 
                        if (LongCasellaInizio.getLatitude() == Lat && LongCasellaInizio.getLongitude() == Long) {
+                            /******** IFFONE PER TROVARE I PERCORSI A CUI APPARTIENE LA CITTA DI PARTENZA DEL GIOCATORE*******/
+                           if (p.getCittapartenza().CheckOccupata() && (percorsos.get(0).getCaselle().get(0).getId()==0||
+                                   percorsos.get(1).getCaselle().get(0).getId()==0||percorsos.get(2).getCaselle().get(0).getId()==0||
+                                   percorsos.get(3).getCaselle().get(0).getId()==0)||(percorsos.get(0).getCaselle().get(percorsos.get(0).getCaselle().size()).getId()==percorsos.get(0).getCaselle().get(percorsos.get(0).getCaselle().size()).getId()||
+                                   percorsos.get(1).getCaselle().get(percorsos.get(1).getCaselle().size()).getId()==percorsos.get(1).getCaselle().get(percorsos.get(1).getCaselle().size()).getId()||
+                                           percorsos.get(2).getCaselle().get(percorsos.get(2).getCaselle().size()).getId()==percorsos.get(2).getCaselle().get(percorsos.get(2).getCaselle().size()).getId()||
+                                                   percorsos.get(3).getCaselle().get(percorsos.get(3).getCaselle().size()).getId()==percorsos.get(3).getCaselle().get(percorsos.get(3).getCaselle().size()).getId())
+                                   ||  (
+                                           percorsos.get(0).CheckSuiVicini(C) ||
+                                                   percorsos.get(1).CheckSuiVicini(C) ||
+                                                   percorsos.get(2).CheckSuiVicini(C) ||
+                                                   percorsos.get(3).CheckSuiVicini(C)
 
-                           giocatore.PosizionaMezzo(C);
+                           )
+
+                                   ){
+                                   giocatore.PosizionaMezzo(C);
 
 
-                           if (giocatore.getMezzo() == null) {
-                               NumeroMezzo.setText(String.valueOf(0));
-                               pippo.strokeColor("red");
-                               finalPolyline.setVisible(false);
-                               //giocatore.PosizionaMezzo(giocatore.getMezzo().get(i));
-                               Polyline polyline1 = new Polyline(pippo);
-                               map.addMapShape(polyline1);
-                               TurnoButton.setVisible(true);
-                           } else if (giocatore.getMezzo().size() > 0) {
-                               NumeroMezzo.setText(String.valueOf(giocatore.getMezzo().size()));
-                               pippo.strokeColor("red");
-                               finalPolyline.setVisible(false);
-                               //giocatore.PosizionaMezzo(giocatore.getMezzo().get(i));
-                               Polyline polyline1 = new Polyline(pippo);
-                               map.addMapShape(polyline1);
+                               if (giocatore.getMezzo() == null) {
+                                   NumeroMezzo.setText(String.valueOf(0));
+                                   pippo.strokeColor("red");
+                                   finalPolyline.setVisible(false);
+                                   //giocatore.PosizionaMezzo(giocatore.getMezzo().get(i));
+                                   Polyline polyline1 = new Polyline(pippo);
+                                   map.addMapShape(polyline1);
+                                   TurnoButton.setVisible(true);
+                               } else if (giocatore.getMezzo().size() > 0) {
+                                   NumeroMezzo.setText(String.valueOf(giocatore.getMezzo().size()));
+                                   pippo.strokeColor("red");
+                                   finalPolyline.setVisible(false);
+                                   //giocatore.PosizionaMezzo(giocatore.getMezzo().get(i));
+                                   Polyline polyline1 = new Polyline(pippo);
+                                   map.addMapShape(polyline1);
+                               }
+
+
                            }
 
-
                        }
-
-
                    });
-                    //non funziona, da fare. Deve mettere la casella colorata solo all'inizio, altrimenti non possiano fare il check sui vicini
-                /*   for (int z = 0; z < mappap.getCitta().size(); z++) {
-                       LatLong coorPartenza = mappap.getCitta().get(z).getCoordinate();
-                       if (coorPartenza.getLatitude()==caselle.get(finalI).getInizio().getLatitude() &&
-                               coorPartenza.getLongitude()==caselle.get(finalI).getInizio().getLongitude() ) {
 
-                           pippo.path(new MVCArray(Prova))
-                                   .clickable(true)
-                                   .draggable(false)
-                                   .strokeColor("red")
-                                   .strokeWeight(6)
-                                   .visible(true);
-                           Polyline polyline1 = new Polyline(pippo);
-                           map.addMapShape(polyline1);
 
-                       }
-                   }*/
+
                }
 
                /******* Controllo sulla contiguità delle caselle nel posizionamento **********/
+
 
 
            }

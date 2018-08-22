@@ -9,7 +9,7 @@ public class Citta {
 	private String Nome;
 	private double distanza;
 	private LatLong coordinate;
-	private Vagone mezzo=null;
+	private Mezzo mezzo=null;
         public Citta() {
            this.Nome="";
            this.distanza=0;
@@ -58,13 +58,13 @@ public class Citta {
 	public void PosizionaGiocatore(FMezzo Mezzo, Giocatore g) {
 		this.mezzo=Mezzo.CreaVagone(g);
 	}
-	public Vagone getMezzo(){
+	public Mezzo getMezzo(){
 		return this.mezzo;
 	}
 
-	public void CheckOccupata() {
-		// TODO - implement Citta.CheckOccupata
-		throw new UnsupportedOperationException();
+	public boolean CheckOccupata() {
+		if(this.mezzo==null) return false;
+		else return true;
 	}
 
 	public LatLong getCoordinate() {
@@ -75,4 +75,7 @@ public class Citta {
 		return this.distanza;
 	}
 
+	public void setMezzo(Mezzo mezzo) {
+		this.mezzo = mezzo;
+	}
 }

@@ -33,7 +33,7 @@ public class Percorso {
 			if(arrivo.getLatitude()>partenza.getLatitude()&&arrivo.getLongitude()<partenza.getLongitude()){
 				double x=partenza.getLatitude();
 				double y=partenza.getLongitude();
-				int n= (int) dist/50;
+				int n= (int) dist/100;
 				LatLong resultold=partenza;
 				double passo=arrivo.getLatitude()-partenza.getLatitude();
 				passo/=n;
@@ -60,7 +60,7 @@ public class Percorso {
 			if(arrivo.getLatitude()>partenza.getLatitude()&&arrivo.getLongitude()>partenza.getLongitude()){
 				double x=arrivo.getLatitude();
 				double y=arrivo.getLongitude();
-				int n= (int) dist/50;
+				int n= (int) dist/100;
 				LatLong resultold=arrivo;
 				double passo=partenza.getLatitude()-arrivo.getLatitude();
 				passo/=n;
@@ -88,7 +88,7 @@ public class Percorso {
 			if(arrivo.getLatitude()<partenza.getLatitude()&&arrivo.getLongitude()<partenza.getLongitude()){
 				double x=arrivo.getLatitude();
 				double y=arrivo.getLongitude();
-				int n= (int) dist/50;
+				int n= (int) dist/100;
 				LatLong resultold=arrivo;
 				double passo=partenza.getLatitude()-arrivo.getLatitude();
 				passo/=n;
@@ -116,7 +116,7 @@ public class Percorso {
 			if(partenza.getLatitude()>arrivo.getLatitude()&&partenza.getLongitude()<arrivo.getLongitude()){
 				double x=arrivo.getLatitude();
 				double y=arrivo.getLongitude();
-				int n= (int) dist/50;
+				int n= (int) dist/100;
 				LatLong resultold=arrivo;
 				double passo=partenza.getLatitude()-arrivo.getLatitude();
 				passo/=n;
@@ -158,20 +158,21 @@ public class Percorso {
 	 */
 	public void TrovaPercorso(CartaPercorso c, FMezzo mez,Giocatore g) {
 		//PER IL MOMENTO usiamo stringhe come identificativo citta!
-		if(c.getCittaPartenza()==this.Cittapartenza.getNome()&&this.Cittapartenza.getMezzo()==null)
+		if(c.getCittaPartenza()==this.Cittapartenza&&this.Cittapartenza.getMezzo()==null)
 			this.Cittapartenza.PosizionaGiocatore(mez,g);
 	}
 
 
 	//Da vedere se è giusta
 	public boolean CheckSuiVicini(Casella c) {
-		int pos=0;
+		int pos=1;
 		int Id=c.getId();
-		for(int i = 0; i<caselle.size(); i++){
-			if(Id==caselle.get(i).getId());
+		for(int i = 1; i<caselle.size(); i++){
+			if(Id==caselle.get(i).getId()){
 			pos = i;
+			}
 		}
-		if(caselle.get(pos-1).CheckOccupata() || caselle.get(pos+1).CheckOccupata()) return  true;
+		if(caselle.get(pos-1).CheckOccupata() || caselle.get(pos+1).CheckOccupata() ) return  true;
 		else return false;
 	}
 

@@ -29,7 +29,7 @@ public class Casella {
 
     public void PosizionaGiocatore(Giocatore g){
             this.m=(Mezzo)g.getMezzo().get(g.getMezzo().size()-1);
-            System.out.println(this.m);
+
             this.libera=false;
         }
     public void ImpostaCoordinate(LatLong i,LatLong f){
@@ -44,6 +44,6 @@ public class Casella {
     public boolean CheckOccupata(){
             return this.libera;
         }
+    }
 
-}
 
