@@ -1,6 +1,6 @@
 package com.lynden.example.latlong;
 
-
+import java.util.Random;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.lynden.example.latlong.Casella;
@@ -18,15 +18,26 @@ public class FMappa {
 	private ArrayList<Percorso> p=new ArrayList<Percorso>();
 
 	public FMappa(ArrayList<Giocatore> g, String NomeMappa) throws FileNotFoundException,IOException {
-				this.Nome=NomeMappa;
-				ArrayList<Citta> c=this.CreaMappa();
-				for (int i=0;i<c.size();i++)
-					for(int j=i+1;j<=i+4&&j<c.size() ;j++){
-						Percorso p;
-						p=new Percorso(i*i+j*j,c.get(i),c.get(j));
-						this.AddPercorso(p);
-				}
+		this.Nome = NomeMappa;
+
+		ArrayList<Citta> c = this.CreaMappa();
+
+
+
+		for (int i=0;i<c.size();i++)
+			for(int j=i+1;j<=i+2&&j<c.size() ;j++){
+				Percorso p;
+				p=new Percorso(i*i+j*j,c.get(i),c.get(j));
+
+				this.AddPercorso(p);
+			}
+
+
+
+
+
 	}
+
 	/**
 	 * 
 	 * @param Giocatori
@@ -75,7 +86,9 @@ public class FMappa {
 	}
 
 	public ArrayList<Percorso> DammiPercorsi() {
-		return this.p;
+
+	return this.p;
+
 	}
 
 	/**

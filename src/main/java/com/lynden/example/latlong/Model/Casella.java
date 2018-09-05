@@ -1,11 +1,12 @@
 package com.lynden.example.latlong;
-import com.lynden.example.latlong.FMezzo;
+import com.lynden.example.latlong.Percorso;
 import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.sun.tools.javac.tree.JCTree;
+
+import java.util.ArrayList;
 
 public class Casella {
     
-        private boolean libera;
+        private boolean occupata;
         private int id;
         private Mezzo m=null;
         private LatLong inizio;
@@ -13,7 +14,7 @@ public class Casella {
 	
         public Casella(int id){
             this.id=id;
-            this.libera=true;
+            this.occupata=false;
             this.inizio=null;
             this.fine=null;
         }
@@ -30,7 +31,7 @@ public class Casella {
     public void PosizionaGiocatore(Giocatore g){
             this.m=(Mezzo)g.getMezzo().get(g.getMezzo().size()-1);
 
-            this.libera=false;
+            this.occupata=true;
         }
     public void ImpostaCoordinate(LatLong i,LatLong f){
 	    this.inizio=i;
@@ -42,8 +43,30 @@ public class Casella {
     }
 
     public boolean CheckOccupata(){
-            return this.libera;
+            return this.occupata;
         }
     }
+
+   /* public void getIdPadre(FMappa f){
+        int id=0;
+        ArrayList<Percorso> per = null;
+        per = f.DammiPercorsi();
+
+        for(int i =0; i<per.size(); i++){
+            Percorso p= per.get(i);
+            ArrayList<Casella> cas = p.getCaselle();
+            for (int j = 0; j < cas.size(); j++) {
+
+            }
+        }
+
+
+
+
+
+
+    }*/
+
+
 
 

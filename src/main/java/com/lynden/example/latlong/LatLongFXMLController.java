@@ -47,7 +47,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
     private GoogleMap map;
     private GeocodingService geocodingService;
     private HashMap<String,GeocoderGeometry> geocodingResults =new HashMap();
-    private com.lynden.example.latlong.Giocatore giocatore =new com.lynden.example.latlong.Giocatore(1,"Giocatore1");
+    private Giocatore giocatore =new Giocatore(1,"Giocatore1");
 
 
     @FXML
@@ -70,7 +70,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
         event.consume();
 
 
-        int n=giocatore.LanciaDado();
+        int n=10; //giocatore.LanciaDado();
         giocatore.setMezzo(n);
 
         NumeroMezzo.setText(String.valueOf(giocatore.getMezzo().size()));
@@ -243,8 +243,10 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
            FMappa mappap = new FMappa(giocatoreArrayList, "Europa");
            mappap.CreaMappa();
 
+
            ArrayList<Percorso> percorsi = null;
            percorsi = mappap.DammiPercorsi();
+
 
            MazzoPercorso mazzoPercorso = new MazzoPercorso();
            mazzoPercorso = mazzoPercorso.getIstance(percorsi);
@@ -270,6 +272,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                    Mezzo mezGioc1= fMezzo.CreaVagone(giocatore);
                    mappap.getCitta().get(i).setMezzo(mezGioc1);
 
+
                    MarkerOptions MarkerPartenza = new MarkerOptions();
                    MarkerPartenza.position(coorPartenza);
                    MarkerPartenza.visible(Boolean.TRUE);
@@ -286,6 +289,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                }
            }
 
+            
 
            /********* Impostare i Percorsi della Mappa *******/
            for (int j = 0; j < percorsi.size(); j++) {
@@ -293,6 +297,24 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
 
                ArrayList<Casella> caselle = p.getCaselle();
                for (int i = 0; i < caselle.size(); i++) {
+
+                   if(CartaPercGioc1.getCittaPartenza().getCoordinate().getLatitude()==caselle.get(i).getInizio().getLatitude()&&
+                           CartaPercGioc1.getCittaPartenza().getCoordinate().getLongitude()==caselle.get(i).getInizio().getLongitude()){
+                       LatLong[] Prova1 = {caselle.get(i).getInizio(), caselle.get(i).getFine()};
+                       //p.CheckSuiVicini(caselle.get(i));
+                       PolylineOptions pippo1 = new PolylineOptions();
+                       pippo1.path(new MVCArray(Prova1))
+                               .clickable(false)
+                               .draggable(false)
+                               .strokeColor("blue")
+                               .strokeWeight(10)
+                               .visible(true);
+                       polyline[0] = new Polyline(pippo1);
+                       map.addMapShape(polyline[0]);
+                       Polyline finalPolyline = polyline[0];
+                       giocatore.setMezzo(1);
+                       giocatore.PosizionaMezzo(caselle.get(i));
+                   }
                    LatLong[] Prova = {caselle.get(i).getInizio(), caselle.get(i).getFine()};
                    //p.CheckSuiVicini(caselle.get(i));
                    PolylineOptions pippo = new PolylineOptions();
@@ -315,10 +337,14 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                        String[] LatLinea = coordinata.split(",");
                        CartaPercorso c = giocatore.ChiediCartaPercorso();
                        ArrayList<Percorso> percorsos=new ArrayList<>();
+
+
                        for(int a=0; a<mappap.DammiPercorsi().size();a++){
+
                            Percorso per1 = mappap.DammiPercorsi().get(a);
                            if(c.getCittaPartenza().getNome().equals(per1.getCittapartenza().getNome()))
                                percorsos.add(per1);
+
                        }
 
 
@@ -330,24 +356,21 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                        LatLong LongCasellaInizio = caselle.get(finalI).getInizio();
                        LatLong LongCasellaFine = caselle.get(finalI).getFine();
                        Casella C = caselle.get(finalI);
+                       //System.out.println(C.getId());
+
+
 
                        if (LongCasellaInizio.getLatitude() == Lat && LongCasellaInizio.getLongitude() == Long) {
-                            /******** IFFONE PER TROVARE I PERCORSI A CUI APPARTIENE LA CITTA DI PARTENZA DEL GIOCATORE*******/
-                           if (p.getCittapartenza().CheckOccupata() && (percorsos.get(0).getCaselle().get(0).getId()==0||
-                                   percorsos.get(1).getCaselle().get(0).getId()==0||percorsos.get(2).getCaselle().get(0).getId()==0||
-                                   percorsos.get(3).getCaselle().get(0).getId()==0)||(percorsos.get(0).getCaselle().get(percorsos.get(0).getCaselle().size()).getId()==percorsos.get(0).getCaselle().get(percorsos.get(0).getCaselle().size()).getId()||
-                                   percorsos.get(1).getCaselle().get(percorsos.get(1).getCaselle().size()).getId()==percorsos.get(1).getCaselle().get(percorsos.get(1).getCaselle().size()).getId()||
-                                           percorsos.get(2).getCaselle().get(percorsos.get(2).getCaselle().size()).getId()==percorsos.get(2).getCaselle().get(percorsos.get(2).getCaselle().size()).getId()||
-                                                   percorsos.get(3).getCaselle().get(percorsos.get(3).getCaselle().size()).getId()==percorsos.get(3).getCaselle().get(percorsos.get(3).getCaselle().size()).getId())
-                                   ||  (
-                                           percorsos.get(0).CheckSuiVicini(C) ||
-                                                   percorsos.get(1).CheckSuiVicini(C) ||
-                                                   percorsos.get(2).CheckSuiVicini(C) ||
-                                                   percorsos.get(3).CheckSuiVicini(C)
+                            /******** da aggiustare dato che non funziona bene. Abbiamo al casella cliccato C,ma non si riesce a trovare la
+                              casella vicina e vedere se è occupata o meno*******/
+                           for(int d=0;d<percorsos.size();d++){
+                               for(int g=0; g<percorsos.get(d).getCaselle().size(); g++){
 
-                           )
+                                 if( percorsos.get(d).getCaselle().get(g).CheckOccupata() )
+                                     System.out.println(percorsos.get(d).getCaselle().size());
 
-                                   ){
+
+                           {
                                    giocatore.PosizionaMezzo(C);
 
 
@@ -368,9 +391,9 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
                                    map.addMapShape(polyline1);
                                }
 
-
                            }
-
+                           }
+                           }
                        }
                    });
 
@@ -437,6 +460,7 @@ public class LatLongFXMLController implements Initializable,MapComponentInitiali
             }
             scrivi.close();
     }
+
     /*public Polyline  equazioneretta(LatLong l,LatLong l1){
         System.out.println("p1"+l);
         System.out.println("p2"+l1);
