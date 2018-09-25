@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import com.lynden.gmapsfx.GoogleMapView?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.*?>
 
-<?import javafx.scene.shape.Box?>
-<?import javafx.scene.text.TextFlow?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.chart.StackedAreaChart?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.image.ImageView?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.text.Font?>
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lynden.example.latlong.LatLongFXMLController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lynden.example.latlong.Partita">
 
 <GoogleMapView fx:id="googleMapView"/>
 
@@ -30,7 +15,7 @@
     <AnchorPane prefHeight="500.0" prefWidth="130.0" style="-fx-background-color: #778899;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <Label fx:id="GiocatoreName" layoutX="22.0" layoutY="31.0" text="" />
-            <Button fx:id="dadoButton" layoutX="20.0" layoutY="80.0" mnemonicParsing="false" text="Lancia Dado" onAction="#calcola"/>
+            <Button fx:id="dadoButton" layoutX="20.0" layoutY="80.0" mnemonicParsing="false" text="Lancia Dado" onAction="#LanciaDado"/>
 
             <Button fx:id="Dado" layoutX="18.0" layoutY="110.0">
                 <graphic>

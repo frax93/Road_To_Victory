@@ -11,6 +11,15 @@ public class Giocatore implements Comparable<Giocatore>,Runnable {
 	private CartaPercorso c=null;
 	private CartaObiettivo c1=null;
 	private ArrayList<Mezzo> mezzo=null;
+	private Stato_Giocatore stato_giocatore;
+
+	public void setState(Stato_Giocatore state){
+		this.stato_giocatore = state;
+	}
+
+	public Stato_Giocatore getState(){
+		return this.stato_giocatore;
+	}
 	@Override
 	public int compareTo(Giocatore g){
 		int compare=((Giocatore) g).getId();
@@ -23,11 +32,17 @@ public class Giocatore implements Comparable<Giocatore>,Runnable {
 	public Giocatore(int id, String u){
 		this.id=id;
 		this.username=u;
+		Attesa attesa=new Attesa();
+		attesa.Ruolo(this);
 
 	}
 
 	public int getId(){
 		return this.id;
+	}
+
+	public ArrayList<Mezzo> getMezzi(){
+		return this.mezzo;
 	}
 
 	public String getUsername(){

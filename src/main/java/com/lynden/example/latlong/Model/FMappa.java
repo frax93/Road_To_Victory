@@ -3,8 +3,9 @@ package com.lynden.example.latlong;
 import java.util.Random;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
-import com.lynden.example.latlong.Casella;
 import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesHandlerImpl;
+import netscape.javascript.JSObject;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,13 +26,11 @@ public class FMappa {
 
 
 		for (int i=0;i<c.size();i++)
-			for(int j=i+1;j<=i+2&&j<c.size() ;j++){
+			for(int j=i+1;j<=i+1&&j<10;j++){
 				Percorso p;
 				p=new Percorso(i*i+j*j,c.get(i),c.get(j));
-
 				this.AddPercorso(p);
 			}
-
 
 
 
@@ -39,13 +38,13 @@ public class FMappa {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Giocatori
 	 * @param Nome_Mappa
 	 */
 	//RITORNA ARRAY SIZE
-	public void sizea(){
-		System.out.println(p.size());
+	public int sizea(){
+		return p.size();
 	}
 	public void AddPercorso(Percorso p1){
 		this.p.add(p1);
@@ -61,11 +60,15 @@ public class FMappa {
 
 			com.google.gson.JsonParser jsonParser = new com.google.gson.JsonParser();
 			JsonArray object = (JsonArray) jsonParser.parse(fw);
+			LatLong l=null;
 			for (int i = 0; i < object.size(); i++) {
-				LatLong l = new LatLong(object.get(i).getAsJsonObject().get("latitude").getAsDouble(),
-						object.get(i).getAsJsonObject().get("longitude").getAsDouble());
-
+				if(object.get(i) != null){
+				double latitude= object.get(i).getAsJsonObject().get("latitude").getAsDouble();
+				double longitude=object.get(i).getAsJsonObject().get("longitude").getAsDouble();
+				l = new LatLong(latitude,longitude);
 				maplat.put(object.get(i).getAsJsonObject().get("variableName").toString(), l);
+				}
+
 			}
 
 			//Costruzione dei percorsi della mappa DA SPOSTARE IN FUTURO
@@ -87,12 +90,12 @@ public class FMappa {
 
 	public ArrayList<Percorso> DammiPercorsi() {
 
-	return this.p;
+		return this.p;
 
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Giocatori
 	 */
 	public void PopolaMappa(ArrayList<Giocatore> giocatores) {
@@ -110,12 +113,17 @@ public class FMappa {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Percorso
 	 */
-	public void MandamiVicini(int Percorso) {
-		// TODO - implement SingletonMappa.MandamiVicini
-		throw new UnsupportedOperationException();
+	public boolean CheckPercorsiVicini(Percorso p1, Percorso p2) {
+		if( p1.getCittapartenza().getNome().equals(p2.getCittapartenza().getNome()) ||
+				p1.getCittapartenza().getNome().equals(p2.getCittaArrivo().getNome()) ||
+				p1.getCittaArrivo().getNome().equals(p2.getCittaArrivo().getNome()) ||
+				p1.getCittaArrivo().getNome().equals(p2.getCittapartenza().getNome()))
+			return true;
+		else
+			return false;
 	}
 
 
@@ -134,7 +142,84 @@ public class FMappa {
 
 	}
 
+	public ArrayList<Percorso> getViciniPercorso(Percorso percorso){
+		ArrayList<Percorso> percorsos=new ArrayList<>();
+		for (int a = 0; a < this.DammiPercorsi().size(); a++) {
+			Percorso per1 = this.DammiPercorsi().get(a);
+			if ( percorso.getCittapartenza().getNome().equals(per1.getCittapartenza().getNome())
+					||percorso.getCittapartenza().getNome().equals(per1.getCittaArrivo().getNome())
+					||percorso.getCittaArrivo().getNome().equals(per1.getCittaArrivo().getNome())
+					||percorso.getCittaArrivo().getNome().equals(per1.getCittapartenza().getNome())
+					){
+				percorsos.add(per1);
 
+			}
+
+		}
+		return percorsos;
+	}
+	public ArrayList<Percorso> getViciniPercorsoPartenza(Percorso percorso){
+		ArrayList<Percorso> percorsos=new ArrayList<>();
+		for (int a=0; a < this.DammiPercorsi().size(); a++) {
+			Percorso per1 = this.DammiPercorsi().get(a);
+			if(percorso.getid()==per1.getid());
+			else if ( percorso.getCittapartenza().getNome().equals(per1.getCittapartenza().getNome())
+					||percorso.getCittapartenza().getNome().equals(per1.getCittaArrivo().getNome())
+					){
+				percorsos.add(per1);
+
+			}
+
+		}
+		return percorsos;
+	}
+	public ArrayList<Percorso> getViciniPercorsoArrivo(Percorso percorso){
+		ArrayList<Percorso> percorsos=new ArrayList<>();
+		for (int a=0; a < this.DammiPercorsi().size(); a++) {
+			Percorso per1 = this.DammiPercorsi().get(a);
+			if(percorso.getid()==per1.getid());
+			else if (  percorso.getCittaArrivo().getNome().equals(per1.getCittaArrivo().getNome())
+					||percorso.getCittaArrivo().getNome().equals(per1.getCittapartenza().getNome())
+					){
+				percorsos.add(per1);
+
+			}
+
+		}
+		return percorsos;
+	}
+
+	public ArrayList<Casella> getCaselleVicinePercorsi(ArrayList<Percorso> p, Casella c){
+		ArrayList<Casella> casellas= new ArrayList<>();
+		for(int i=0; i<p.size();i++)
+			casellas.add(p.get(i).getCasellaPerVicino(c));
+		return casellas;
 
 	}
+
+
+
+
+	//Funzione che data una casella restituisce il percorso in cui si trova quella casella
+	public Percorso getPercorsoByCasella(Casella c){
+		ArrayList<Percorso> percorsi = this.DammiPercorsi();
+		boolean esci=false;
+		int i;
+		ArrayList<Casella> caselle = new ArrayList<>();
+		for (i=0; i <percorsi.size();i++){
+			caselle= percorsi.get(i).getCaselle();
+			for(int j=0;j<caselle.size();j++) {
+				if (c.getId() ==caselle.get(j).getId()) {
+					esci=true;
+					break;}
+			}
+			if(esci==true) break;
+		}
+		return percorsi.get(i);
+
+	}
+
+
+
+}
 

@@ -45,27 +45,12 @@ public class Casella {
     public boolean CheckOccupata(){
             return this.occupata;
         }
+
+    public void setOccupata(boolean occupata) {
+        this.occupata = occupata;
     }
+}
 
-   /* public void getIdPadre(FMappa f){
-        int id=0;
-        ArrayList<Percorso> per = null;
-        per = f.DammiPercorsi();
-
-        for(int i =0; i<per.size(); i++){
-            Percorso p= per.get(i);
-            ArrayList<Casella> cas = p.getCaselle();
-            for (int j = 0; j < cas.size(); j++) {
-
-            }
-        }
-
-
-
-
-
-
-    }*/
 
 
 

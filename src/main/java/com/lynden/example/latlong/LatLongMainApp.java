@@ -1,17 +1,10 @@
 package com.lynden.example.latlong;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import com.lynden.gmapsfx.service.geocoding.GeocoderRequest;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 /*import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;*/
@@ -21,9 +14,8 @@ import net.sourceforge.jgeocoder.JGeocodeAddress;
 import net.sourceforge.jgeocoder.tiger.H2DbDataSourceFactory;
 import net.sourceforge.jgeocoder.tiger.JGeocoder;
 import net.sourceforge.jgeocoder.tiger.JGeocoderConfig;*/
-import java.awt.*;
-import java.util.concurrent.TimeUnit;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 //Importante per realizzazione CUBO 3D
@@ -33,18 +25,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.*;
 import javafx.animation.*;
 import javafx.util.*;
-import javafx.scene.layout.*;
 import javafx.scene.*;
 
+import java.lang.*;
 
 
 
 
-public class LatLongMainApp extends Application {
+
+
+public class LatLongMainApp extends Application{
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception, FileNotFoundException,IOException {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("Scene.fxml"));
@@ -90,12 +84,15 @@ public class LatLongMainApp extends Application {
 
 
         Scene scene = new Scene(root);
-        GoogleMapView googleMapView = (GoogleMapView)  scene.lookup("#googleMapView");
-        googleMapView.autosize();
+        //GoogleMapView googleMapView = (GoogleMapView)  scene.lookup("#googleMapView");
+        //googleMapView.autosize();
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setTitle("Road To Victory Europa");
         stage.setScene(scene);
         stage.show();
+
+
+
 
     }
 

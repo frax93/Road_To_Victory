@@ -9,21 +9,32 @@ public class Citta {
 	private String Nome;
 	private double distanza;
 	private LatLong coordinate;
+	private boolean occupata;
 	private Mezzo mezzo=null;
         public Citta() {
            this.Nome="";
            this.distanza=0;
            this.coordinate=null;
+           this.occupata=false;
         }
         public Citta(String Nome,int dist){
             this.Nome=Nome;
             this.distanza=dist;
             this.coordinate= null;
+            this.occupata= occupata;
 
         }
         public String getNome(){
             return this.Nome;
         }
+
+	public void setOccupata(boolean occupata) {
+		this.occupata = occupata;
+	}
+
+	public boolean getOccupata(){
+        	return this.occupata;
+	}
 
 	/******* DA INSERIRE IN VP ********/
 	public void ImpostaCoordinate(LatLong l){
